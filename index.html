@@ -49,7 +49,7 @@
     .hero h1 { margin: 0; color: #0a0a0a; font-size: 70px; font-weight: 500; line-height: 74px; letter-spacing: -2.1px; }
     .subtitle { margin: 22px 0 0; color: #031728b3; font-size: 20px; font-weight: 400; line-height: 32px; }
     .welcome { margin-top: 30px; }
-    .welcome h2 { margin: 0; color: #0a0a0a; font-size: 48px; font-weight: 500; line-height: 53px; letter-spacing: -.96px; }
+    .welcome h3 { margin: 0; color: #0a0a0a; font-size: 48px; font-weight: 500; line-height: 53px; letter-spacing: -.96px; }
     .hero-action { margin-top: 30px; }
     .hero-pinned { margin-top: 22px; }
     @media (max-width: 1199px) {
@@ -64,7 +64,7 @@
     .hero-copy .video-copy { margin-top: 8px; }
     .hero-copy .hero-action { margin-top: 36px; }
     .video-card { min-width: 0; align-self: stretch; }
-    @media (min-width: 1200px) { .video-card .video-stage { position: sticky; top: 24px; } }
+    @media (min-width: 1200px) { .video-card .video-stage { position: sticky; top: calc(50% + var(--nav-shift, 0px)); transform: translateY(-50%); } }
     .video-stage { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: 20px; background: var(--deep); }
     .video-stage video { width: 100%; height: 100%; object-fit: cover; }
     .video-stage::after { content: ''; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, #08272580); pointer-events: none; transition: opacity .25s ease; }
@@ -142,7 +142,7 @@
       .container { width: calc(100% - 64px); }
       .hero h1 { font-size: 44px; line-height: 51px; letter-spacing: -1.32px; }
       .hero-grid { gap: 32px; }
-      .welcome h2, .section-heading { font-size: 40px; line-height: 44px; }
+      .welcome h3, .section-heading { font-size: 40px; line-height: 44px; }
       .process-card { padding: 24px; gap: 24px; }
       .process-card h3 { font-size: 26px; line-height: 34px; }
       .process-card img, .process-card-icon { width: 64px; height: 64px; padding: 8px; }
@@ -189,7 +189,7 @@
       .hero-copy .video-copy { margin-top: 24px; }
       .hero-copy .hero-action { margin-top: 28px; }
       .welcome { margin-top: 28px; }
-      .welcome h2 { font-size: 32px; line-height: 38px; letter-spacing: -.64px; }
+      .welcome h3 { font-size: 32px; line-height: 38px; letter-spacing: -.64px; }
       .hero-action { margin-top: 28px; }
       .video-stage { border-radius: 16px; }
       .video-play { width: 68px; height: 68px; }
@@ -265,7 +265,7 @@
             <div class="hero-pinned">
               <p class="subtitle">Advanced Physiological Support for Your Recovery</p>
               <div class="welcome">
-                <h2>Welcome ED-180 Patients</h2>
+                <h3>Welcome ED-180 Patients</h3>
               </div>
             </div>
             <div class="video-copy">
@@ -348,9 +348,15 @@
         const t = Math.min(1, Math.max(0, (y / hero.offsetHeight + 0.22283) / 1.21629));
         pinned.style.setProperty('--pin-rgb', from.map(c => Math.round(c + (255 - c) * t)).join(' '));
       };
-      addEventListener('scroll', tint, { passive: true });
-      addEventListener('resize', tint);
-      tint();
+      const header = document.querySelector('.site-header');
+      const stage = document.querySelector('.video-card .video-stage');
+      const shift = () => {
+        if (stage && header) stage.style.setProperty('--nav-shift', Math.max(0, header.getBoundingClientRect().bottom) / 2 + 'px');
+      };
+      const update = () => { tint(); shift(); };
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      update();
     })();
     const menuButton = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-navigation');
