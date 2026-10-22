@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="YouMind Bespoke for patients of ED-180 Treatment Programs.">
+  <title>YouMind Bespoke | ED-180 Treatment Programs</title>
+  <link rel="icon" type="image/png" href="assets/image-dafbadefacc772d7.png">
+  <style>
+    @font-face { font-family: Poppins; src: url('assets/poppins-400.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: Poppins; src: url('assets/poppins-500.ttf') format('truetype'); font-style: normal; font-weight: 500; font-display: swap; }
+    @font-face { font-family: Poppins; src: url('assets/poppins-600.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
+    @font-face { font-family: Outfit; src: url('assets/outfit-300.ttf') format('truetype'); font-style: normal; font-weight: 300; font-display: swap; }
+    :root { --ink: #031728; --body: #021019; --ice: #ecf7f9; --teal: #199a91; --deep: #082725; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: #fff; font-family: Poppins, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img, video { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+    .container { width: calc(100% - 160px); max-width: 1280px; margin-inline: auto; }
+    .skip-link { position: absolute; z-index: 50; top: -100px; left: 20px; padding: 10px 15px; border-radius: 20px; background: var(--body); color: #fff; }
+    .skip-link:focus { top: 10px; }
+
+    /* Header geometry and assets follow the YouMind design system. */
+    .site-header { position: absolute; z-index: 20; top: 0; left: 50%; transform: translateX(-50%); padding-block: 20px; }
+    .navbar { position: relative; height: 79px; border-radius: 100px; background: #fff; box-shadow: inset 0 0 0 1px #d4d4d4; backdrop-filter: blur(4px); padding: 12px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { position: relative; width: 159px; height: 62px; flex-shrink: 0; }
+    .brand img { width: 159px; height: 62px; }
+    .brand .brand-desktop { position: absolute; left: 27.286px; top: 1px; width: 70.747px; height: 58px; filter: brightness(0); }
+    .brand-mobile { display: none; }
+    .desktop-nav { display: flex; gap: 24px; align-items: center; font-size: 16px; line-height: 1.2; letter-spacing: .32px; color: #1c1c1c; }
+    .desktop-nav a:hover { color: #14877f; }
+    .contact-link { display: flex; gap: 8px; align-items: center; justify-content: center; padding: 12px 12px 12px 16px; height: 48px; background: rgba(0,0,0,.01); box-shadow: inset 0 0 0 1px rgba(0,0,0,.04); border-radius: 36px; color: #1c1c1c; font-size: 16px; font-weight: 500; }
+    .contact-link img { width: 23px; height: 23px; }
+    .menu-toggle { display: none; width: 48px; height: 48px; padding: 12px; border: 0; border-radius: 36px; background: rgba(0,0,0,.01); box-shadow: inset 0 0 0 1px rgba(0,0,0,.04); cursor: pointer; }
+    .menu-toggle img { width: 24px; height: 24px; }
+    .mobile-nav { position: absolute; z-index: 5; top: calc(100% + 8px); left: 0; right: 0; border: 1px solid #d4d4d4; border-radius: 20px; background: #fff; padding: 16px; box-shadow: 0 12px 30px #03172812; }
+    .mobile-nav[hidden] { display: none; }
+    .mobile-nav a { display: block; padding: 12px 16px; border-radius: 8px; }
+    .mobile-nav a:hover { background: var(--ice); }
+
+    .hero { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(179.6deg, #cafdf9 -22.283%, #fff 99.346%); padding: 159px 0 100px; }
+    .hero-rays, .hero-pattern { position: absolute; top: 0; left: 0; z-index: -1; max-width: none; pointer-events: none; }
+    .hero-rays { width: 569px; height: 695px; }
+    .hero-pattern { width: 1440px; height: 707px; }
+    .hero-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 52px; align-items: start; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin: 0 0 24px; color: #1e1f2b99; font-size: 20px; line-height: 32px; }
+    .breadcrumb a:hover { color: var(--teal); }
+    .breadcrumb span:last-child { color: #1e1f2b; }
+    .hero h1 { margin: 0; color: #1e1f2b; font-size: clamp(44px, 4vw, 60px); font-weight: 500; line-height: 1.13; letter-spacing: -1.8px; }
+    .subtitle { margin: 22px 0 0; color: var(--body); font-size: 24px; font-weight: 500; line-height: 1.35; }
+    .welcome { margin-top: 48px; }
+    .welcome h2 { margin: 0 0 22px; color: var(--body); font-size: 32px; font-weight: 500; line-height: 1.25; letter-spacing: -.5px; }
+    .welcome p { margin: 0 0 18px; color: #031728b3; font-size: 18px; font-weight: 400; line-height: 1.65; }
+    .welcome p:last-child { margin-bottom: 0; }
+    .hero-action { margin-top: 26px; }
+    .video-card { min-width: 0; }
+    .video-stage { position: relative; overflow: hidden; aspect-ratio: 614 / 632; border-radius: 20px; background: var(--deep); }
+    .video-stage video { width: 100%; height: 100%; object-fit: cover; }
+    .video-stage.is-playing video { object-fit: contain; }
+    .video-stage::after { content: ''; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, #08272580); pointer-events: none; transition: opacity .25s ease; }
+    .video-stage.is-playing::after { opacity: 0; }
+    .video-play { position: absolute; z-index: 1; top: 50%; left: 50%; display: grid; place-items: center; width: 84px; height: 84px; padding: 0; border: 1px solid #fff8; border-radius: 50%; color: var(--deep); background: #fff; box-shadow: 0 8px 35px #08272545; cursor: pointer; transform: translate(-50%, -50%); }
+    .video-play svg { width: 30px; height: 30px; margin-left: 4px; fill: currentColor; }
+    .video-stage.is-playing .video-play { display: none; }
+
+    .how { padding: 100px 0 110px; background: #fff; }
+    .section-heading { margin: 0 0 44px; color: #0a0a0a; font-size: 48px; font-weight: 500; line-height: 1.3; text-transform: uppercase; }
+    .process-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .process-card { min-width: 0; padding: 32px; border-radius: 32px; background: #fcfcfc; box-shadow: inset 0 0 0 1px #f2f2f2; }
+    .process-card-top { display: flex; justify-content: space-between; align-items: start; margin-bottom: 32px; }
+    .process-card-number { color: #199a91; font-size: 18px; font-weight: 500; letter-spacing: .05em; }
+    .process-card h3 { margin: 0 0 17px; color: var(--body); font-size: 28px; font-weight: 500; line-height: 1.3; }
+    .process-card p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.7; letter-spacing: .1px; }
+    .process-card img { width: 30px; height: 30px; object-fit: contain; }
+    .process-card-icon { width: 34px; height: 34px; display: grid; place-items: center; }
+    .process-card-icon svg { width: 30px; height: 30px; }
+
+    .pricing { color: var(--ice); background: linear-gradient(180deg, #199a91 0%, #082725 100%); padding: 100px 0; }
+    .pricing-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 70px; align-items: center; }
+    .pricing h2 { margin: 0 0 24px; font-size: 48px; font-weight: 500; line-height: 1.2; text-transform: uppercase; }
+    .pricing p { margin: 0; max-width: 610px; font-size: 20px; line-height: 1.6; }
+    .rate { padding: 25px 0; border-top: 1px solid #ffffff75; border-bottom: 1px solid #ffffff75; }
+    .rate-label { font-size: 20px !important; font-weight: 500; }
+    .rate-line { display: flex; align-items: baseline; gap: 15px; margin: 12px 0 16px; }
+    .rate-line strong { color: #fff; font-size: 96px; font-weight: 500; line-height: 1; letter-spacing: -4px; }
+    .rate-line span { font-size: 27px; }
+    .rate-note { font-size: 16px !important; opacity: .9; }
+
+    .start { padding: 100px 0 110px; background: linear-gradient(180deg, #fff, #f3faf9 100%); }
+    .start-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: 44px; }
+    .start-top .section-heading { margin: 0; }
+    .gradient-cta { display: inline-flex; gap: 12px; align-items: center; justify-content: center; padding: 8px 8px 8px 20px; border-radius: 100px; color: #fff; background: linear-gradient(180deg, #199a91 0%, #082725 100%); font-size: 18px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
+    .gradient-cta .cta-arrow { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 100px; background: #fff; color: var(--body); }
+    .gradient-cta svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .start-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+    .start-grid li { position: relative; min-height: 270px; padding: 30px; border-radius: 24px; background: #fff; box-shadow: inset 0 0 0 1px #dfecea; }
+    .start-number { display: grid; place-items: center; width: 76px; height: 76px; margin-bottom: 34px; border-radius: 50%; color: #fff; background: linear-gradient(180deg, #199a91, #082725); font-size: 20px; font-weight: 500; }
+    .start-grid p { margin: 0; color: var(--body); font-size: 21px; font-weight: 400; line-height: 1.55; }
+    .start-grid strong { font-weight: 600; }
+    .start-grid a { text-decoration: underline; text-underline-offset: 3px; }
+    .copy-code { display: inline-block; margin-top: 20px; padding: 7px 14px; border: 1px solid #199a91; border-radius: 100px; color: #075650; background: #fff; font-size: 14px; font-weight: 500; cursor: pointer; }
+    .copy-code:hover { background: var(--ice); }
+
+    .privacy { padding: 0 0 110px; }
+    .privacy-panel { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; padding: 52px; border-radius: 32px; background: var(--ice); }
+    .privacy h2 { margin: 0; color: var(--body); font-size: 40px; font-weight: 500; line-height: 1.25; text-transform: uppercase; }
+    .privacy p { margin: 0; color: var(--ink); font-size: 20px; line-height: 1.65; }
+
+    /* Footer hierarchy, scale, and gradient from the source site's index.html. */
+    .site-footer { min-height: 620px; color: var(--ice); background: linear-gradient(180deg, #199a91, #082725); padding-top: 100px; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; }
+    .footer-intro { width: 404px; flex-shrink: 0; }
+    .footer-logo { object-fit: contain; object-position: left top; width: 105.898px; height: 86.818px; margin-top: 1.62px; margin-bottom: 24.562px; filter: brightness(0) invert(96%) sepia(8%) saturate(323%) hue-rotate(141deg); }
+    .footer-intro p { margin: 0; font-size: 20px; line-height: 32px; }
+    .footer-pair { display: contents; }
+    .footer-column h2 { margin: 0 0 20px; color: #fff; font-size: 24px; line-height: 34px; font-weight: 500; }
+    .footer-links { display: flex; flex-direction: column; gap: 16px; color: rgba(255,255,255,.9); font-size: 20px; line-height: 32px; }
+    .footer-links a { white-space: nowrap; }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 100px; padding-block: 40px; box-shadow: 0 -1px 0 #ffffff33; }
+    .footer-small-logo { width: 70.747px; height: 58px; margin-left: 27.286px; margin-right: 60.967px; margin-top: 1px; margin-bottom: 3px; filter: brightness(0) invert(96%) sepia(8%) saturate(323%) hue-rotate(141deg); }
+    .copyright { margin: 0; color: #ffffffcc; font-size: 20px; line-height: 32px; }
+    .legal { display: flex; gap: 32px; color: #ffffffcc; font-family: Outfit, Arial, sans-serif; font-weight: 300; font-size: 16px; line-height: 21px; }
+
+    @media (min-width: 768px) and (max-width: 1439px) {
+      .container { width: calc(100% - 64px); }
+      .hero h1 { font-size: clamp(40px, 4vw, 54px); letter-spacing: -1.2px; }
+      .hero-grid { gap: 32px; }
+      .welcome p { font-size: 16px; }
+      .footer-top { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; }
+      .footer-intro { width: auto; grid-column: 1 / -1; max-width: 560px; }
+      .footer-bottom { margin-top: 64px; flex-wrap: wrap; }
+      .footer-bottom .legal { margin-left: auto; }
+    }
+    @media (max-width: 1023px) {
+      .desktop-nav, .contact-link { display: none; }
+      .menu-toggle { display: block; }
+      .navbar { height: 69px; padding: 3.5px 8px; }
+      .brand-desktop { display: none; }
+      .brand .brand-mobile { display: block; position: absolute; left: 8px; top: 5.5px; width: 59.77px; height: 49px; filter: brightness(0); }
+      .hero-grid { grid-template-columns: 1fr; }
+      .video-card { max-width: 700px; width: 100%; }
+      .video-stage { aspect-ratio: 16 / 10; }
+      .welcome { margin-top: 30px; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 45px; }
+      .privacy-panel { gap: 35px; }
+    }
+    @media (max-width: 767px) {
+      .container { width: calc(100% - 40px); }
+      .site-header { padding-block: 20px; }
+      .hero { padding: 135px 0 65px; background: linear-gradient(179.95deg, #cafdf9 -22.6%, #fff 100.6%); }
+      .hero-rays { width: 360px; height: auto; }
+      .hero-pattern { width: 860px; height: auto; }
+      .breadcrumb { margin-bottom: 20px; font-size: 14px; line-height: 22px; }
+      .hero h1 { font-size: 36px; line-height: 1.18; font-weight: 500; letter-spacing: -.8px; }
+      .subtitle { margin-top: 20px; font-size: 18px; line-height: 1.5; }
+      .hero-grid { gap: 38px; }
+      .welcome { margin-top: 38px; }
+      .welcome h2 { font-size: 26px; line-height: 1.25; letter-spacing: 0; }
+      .welcome p { font-size: 14px; line-height: 1.65; }
+      .video-stage { border-radius: 16px; }
+      .video-play { width: 68px; height: 68px; }
+      .how, .start { padding: 65px 0 75px; }
+      .section-heading { margin-bottom: 30px; font-size: 32px; line-height: 38px; text-transform: none; }
+      .process-grid, .start-grid { grid-template-columns: 1fr; gap: 20px; }
+      .process-card { padding: 24px; }
+      .process-card-top { margin-bottom: 24px; }
+      .process-card h3 { font-size: 23px; }
+      .process-card p { font-size: 15px; }
+      .pricing { padding: 70px 0; }
+      .pricing h2 { font-size: 32px; line-height: 1.25; text-transform: none; }
+      .pricing p { font-size: 16px; }
+      .rate-line strong { font-size: 76px; }
+      .rate-line span { font-size: 22px; }
+      .start-top { display: block; }
+      .start-top .gradient-cta { margin-top: 25px; }
+      .start-grid li { min-height: 0; }
+      .start-number { width: 60px; height: 60px; margin-bottom: 26px; }
+      .start-grid p { font-size: 19px; }
+      .privacy { padding-bottom: 75px; }
+      .privacy-panel { display: block; padding: 30px 26px; }
+      .privacy h2 { margin-bottom: 23px; font-size: 28px; text-transform: none; }
+      .privacy p { font-size: 16px; }
+      .site-footer { min-height: 0; padding: 44px 0; }
+      .footer-top { display: flex; flex-direction: column; gap: 20px; }
+      .footer-intro { width: 100%; flex: none; }
+      .footer-pair { display: flex; width: 100%; justify-content: space-between; gap: 24px; }
+      .footer-pair .footer-column:last-child { width: 159px; }
+      .footer-column h2 { margin-bottom: 16px; color: var(--ice); }
+      .footer-links { color: var(--ice); font-size: 18px; }
+      .footer-bottom { display: none; }
+    }
+    @media (max-width: 374px) { .footer-column h2 { font-size: 21px; } .footer-links { font-size: 16px; } .footer-pair { gap: 16px; } .footer-pair .footer-column:last-child { width: auto; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <img class="hero-rays" src="assets/hero-rays.svg" alt="" aria-hidden="true">
+      <img class="hero-pattern" src="assets/hero-pattern.svg" alt="" aria-hidden="true">
+      <header class="site-header container">
+        <div class="navbar">
+          <a class="brand" href="https://youmind.org/" aria-label="YouMind home">
+            <img class="brand-desktop" src="assets/image-dafbadefacc772d7.png" alt="YouMind" width="159" height="62">
+            <img class="brand-mobile" src="assets/image-585583535e37dcca.png" alt="" width="159" height="62">
+          </a>
+          <nav class="desktop-nav" aria-label="Main navigation">
+            <a href="https://youmind.org/">Success</a><a href="https://youmind.org/about-us/">About Us</a><a href="https://youmind.org/insights/">Case Study</a><a href="https://youmind.org/testimonials/">Testimonials</a>
+          </nav>
+          <a class="contact-link" href="https://youmind.org/contact-us/">Contact Us <img src="assets/image-1d6f3d4b76ee026f.png" alt="" width="23" height="23"></a>
+          <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation"><img src="assets/home-menu.svg" alt="" width="24" height="24"></button>
+          <nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile navigation" hidden>
+            <a href="https://youmind.org/">Success</a><a href="https://youmind.org/about-us/">About Us</a><a href="https://youmind.org/insights/">Case Study</a><a href="https://youmind.org/testimonials/">Testimonials</a><a href="https://youmind.org/contact-us/">Contact Us</a>
+          </nav>
+        </div>
+      </header>
+      <div class="container hero-grid">
+          <div class="hero-copy">
+            <nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://youmind.org/">Home</a><span aria-hidden="true">/</span><span aria-current="page">ED-180 Patients</span></nav>
+            <h1 id="page-title">YouMind Bespoke | ED-180 Treatment Programs</h1>
+            <p class="subtitle">Advanced Physiological Support for Your Recovery</p>
+            <div class="welcome">
+            <h2>Welcome ED-180 Patients</h2>
+            <p>Dr. Jeffrey DeSarbo and the clinical team at ED-180 Treatment Programs have partnered with YouMind to bring you a non-invasive layer of physiological support.</p>
+            <p>Eating disorder recovery often involves periods of anticipatory anxiety and heightened nervous system stress. This autonomic friction can make traditional psychotherapy, psychiatric appointments, and supervised meal support feel particularly overwhelming.</p>
+            <p>YouMind Bespoke is designed to complement your current treatment pathway at ED-180 by providing a structured, at-home neuroacoustic protocol. By supporting nervous system down-regulation between your clinical appointments, YouMind helps you arrive at each session feeling more grounded, receptive, and regulated.</p>
+            </div>
+            <a class="gradient-cta hero-action" href="#get-started">How to Get Started <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></svg></span></a>
+          </div>
+          <div class="video-card">
+            <div class="video-stage" id="video-stage">
+              <video id="intro-video" controls playsinline preload="metadata" poster="assets/youmind-bespoke-poster.jpg" aria-label="YouMind Bespoke introduction video"><source src="assets/youmind-bespoke.mp4" type="video/mp4">Your browser does not support HTML video.</video>
+              <button class="video-play" id="video-play" type="button" aria-label="Play YouMind Bespoke introduction video"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4.5v23l19-11.5L8 4.5Z"/></svg></button>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section class="how" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <h2 class="section-heading" id="how-title">How YouMind Bespoke Works</h2>
+        <div class="process-grid">
+          <article class="process-card"><div class="process-card-top"><span class="process-card-number">01</span><img src="assets/icon-0e28ced18d2cb975.svg" alt=""></div><h3>The 5-Minute Guided Vocal Check-In</h3><p>Access the platform directly through your smartphone or web browser. There are zero apps to download, logins to remember, or long surveys to complete. You simply speak naturally in response to a series of brief conversational prompts.</p></article>
+          <article class="process-card"><div class="process-card-top"><span class="process-card-number">02</span><img src="assets/icon-d9239af174b54787.svg" alt=""></div><h3>Holistic Evaluation Across 5 Core Domains</h3><p>As you speak, the system analyzes verbal and acoustic features to assess five foundational functional areas: Sleep, Mental Cognition, Emotional Regulation, Physical Energy, and Intention.</p></article>
+          <article class="process-card"><div class="process-card-top"><span class="process-card-number">03</span><span class="process-card-icon" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sound-gradient" x1="15" y1="0" x2="15" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#199A91"/><stop offset="1" stop-color="#082725"/></linearGradient></defs><path d="M3 18V12M9 23V7M15 28V2M21 23V7M27 18V12" stroke="url(#sound-gradient)" stroke-width="3" stroke-linecap="round"/></svg></span></div><h3>Individualized Neuroacoustic Protocol</h3><p>From your assessment, YouMind builds a daily listening protocol tailored to your baseline. Using precisely specified temporal and frequency characteristics (isochronic tone stimulation), these sounds provide structured sensory support.</p></article>
+          <article class="process-card"><div class="process-card-top"><span class="process-card-number">04</span><img src="assets/icon-a063ff48f613ba57.svg" alt=""></div><h3>Nervous System Regulation</h3><p>The auditory protocols offer a non-pharmacological tool to help safely ease your body out of sympathetic overdrive (“fight or flight”) and into a calmer, parasympathetic (“rest and digest”) state.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="container pricing-grid">
+        <div><h2 id="pricing-title">Exclusive ED-180 Pricing</h2><p>Through Dr. DeSarbo’s clinical partnership, active ED-180 patients receive access to YouMind Bespoke at a dedicated partner rate:</p></div>
+        <div class="rate"><p class="rate-label">ED-180 Patient Rate</p><div class="rate-line"><strong>$49</strong><span>/ month</span></div><p class="rate-note">Standard Price: $99 / month — 50% Courtesy Savings</p></div>
+      </div>
+    </section>
+
+    <section class="start" id="get-started" aria-labelledby="start-title">
+      <div class="container">
+        <div class="start-top"><h2 class="section-heading" id="start-title">How to Get Started</h2><a class="gradient-cta" href="https://youmind.org/bespoke/">Visit YouMind Bespoke <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></svg></span></a></div>
+        <ol class="start-grid">
+          <li><span class="start-number">01</span><p>Visit <a href="https://youmind.org/bespoke/"><strong>YouMind.org/Bespoke</strong></a></p></li>
+          <li><span class="start-number">02</span><p>Enter your partner affiliate code <strong>DESARBO</strong> at checkout to unlock your 50% discount.</p><button class="copy-code" id="copy-code" type="button" aria-label="Copy affiliate code DESARBO">Copy code</button></li>
+          <li><span class="start-number">03</span><p>Complete your first 5-minute vocal check-in and begin your personalized listening protocol.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy" aria-labelledby="privacy-title"><div class="container privacy-panel"><h2 id="privacy-title">Privacy &amp; Clinical Boundaries</h2><p>Your privacy is central to this program. All voice interactions and personal data are encrypted and kept strictly confidential. YouMind functions as an adjunctive, supportive physiological layer—it does not diagnose medical or psychiatric conditions, prescribe medication, or replace your ongoing physician care and therapy at ED-180.</p></div></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-intro"><a href="https://youmind.org/" aria-label="YouMind home"><img class="footer-logo" src="assets/image-b8dcfe0a2e0f8ded.png" alt="YouMind" width="197" height="93"></a><p>Precision neuro-acoustics for optimal state regulation. Supporting individuals, premium hospitality, healthcare, and organisational performance across the globe.</p></div>
+        <div class="footer-pair">
+          <nav class="footer-column" aria-label="Company"><h2>COMPANY</h2><div class="footer-links"><a href="https://youmind.org/about-us/">About Us</a><a href="https://youmind.org/contact-us/">Contact</a><a href="https://youmind.org/terms-of-use-and-privacy-policy/">Privacy Policy</a></div></nav>
+          <nav class="footer-column" aria-label="Resources"><h2>RESOURCES</h2><div class="footer-links"><a href="https://youmind.org/insights/">Insights</a><a href="https://youmind.org/science/">Science</a><a href="https://youmind.org/science/">Frameworks</a></div></nav>
+        </div>
+        <nav class="footer-column" aria-label="Solutions"><h2>Solution</h2><div class="footer-links"><a href="https://youmind.org/bespoke/">Personal</a><a href="https://youmind.org/hospitality-and-healthcare/">Hospitality</a><a href="https://youmind.org/healthcare/">Healthcare</a><a href="https://youmind.org/organizational-performance/">Corporate</a><a href="https://youmind.org/defense-tactical/">Defense</a></div></nav>
+      </div>
+      <div class="footer-bottom"><img class="footer-small-logo" src="assets/image-dafbadefacc772d7.png" alt="YouMind" width="159" height="62"><p class="copyright">&copy; 2026 YouMind&reg;. All rights reserved.</p><div class="legal"><a href="https://youmind.org/terms-of-service/">Terms of Service</a><a href="https://youmind.org/terms-of-use-and-privacy-policy/">Privacy Policy</a></div></div>
+    </div>
+  </footer>
+  <script>
+    const menuButton = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-navigation');
+    menuButton.addEventListener('click', () => {
+      const open = menuButton.getAttribute('aria-expanded') !== 'true';
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      mobileNav.hidden = !open;
+    });
+    mobileNav.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        mobileNav.hidden = true;
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+    const introVideo = document.getElementById('intro-video');
+    const videoStage = document.getElementById('video-stage');
+    const playButton = document.getElementById('video-play');
+    introVideo.controls = false;
+    playButton.addEventListener('click', () => {
+      introVideo.controls = true;
+      videoStage.classList.add('is-playing');
+      introVideo.play();
+    });
+    const copyButton = document.getElementById('copy-code');
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('DESARBO');
+        copyButton.textContent = 'Code copied';
+        setTimeout(() => { copyButton.textContent = 'Copy code'; }, 2500);
+      } catch {
+        copyButton.textContent = 'Select DESARBO above to copy';
+      }
+    });
+  </script>
+</body>
+</html>
