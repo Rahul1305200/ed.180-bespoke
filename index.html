@@ -38,7 +38,7 @@
     .mobile-nav a { display: block; padding: 12px 16px; border-radius: 8px; }
     .mobile-nav a:hover { background: var(--ice); }
 
-    .hero { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(179.6deg, #cafdf9 -22.283%, #fff 99.346%); padding: 159px 0 60px; }
+    .hero { position: relative; isolation: isolate; overflow: clip; background: linear-gradient(179.6deg, #cafdf9 -22.283%, #fff 99.346%); padding: 159px 0 60px; }
     .hero-rays, .hero-pattern { position: absolute; top: 0; left: 0; z-index: -1; max-width: none; pointer-events: none; }
     .hero-rays { width: 569px; height: 695px; }
     .hero-pattern { width: 1440px; height: 707px; }
@@ -51,7 +51,20 @@
     .welcome { margin-top: 30px; }
     .welcome h2 { margin: 0; color: #0a0a0a; font-size: 48px; font-weight: 500; line-height: 53px; letter-spacing: -.96px; }
     .hero-action { margin-top: 30px; }
-    .video-card { min-width: 0; }
+    .hero-pinned { margin-top: 22px; }
+    @media (max-width: 1199px) {
+      .hero-grid { display: flex; flex-direction: column; gap: 0; }
+      .hero-copy { display: contents; }
+      .video-card { order: 1; width: 100%; }
+      .hero-copy .video-copy { order: 2; }
+      .hero-copy .hero-action { order: 3; align-self: flex-start; }
+    }
+    @media (min-width: 1200px) { .hero-pinned { position: sticky; top: 0; z-index: 2; padding: 24px 0 28px; margin-top: -2px; background: linear-gradient(rgb(var(--pin-rgb, 230 254 252)) 78%, rgb(var(--pin-rgb, 230 254 252) / 0)); } }
+    .hero-pinned .subtitle { margin-top: 0; }
+    .hero-copy .video-copy { margin-top: 8px; }
+    .hero-copy .hero-action { margin-top: 36px; }
+    .video-card { min-width: 0; align-self: stretch; }
+    @media (min-width: 1200px) { .video-card .video-stage { position: sticky; top: 24px; } }
     .video-stage { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: 20px; background: var(--deep); }
     .video-stage video { width: 100%; height: 100%; object-fit: cover; }
     .video-stage::after { content: ''; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, #08272580); pointer-events: none; transition: opacity .25s ease; }
@@ -83,7 +96,7 @@
     .rate-line span { font-size: 27px; }
     .rate-note { font-size: 16px !important; opacity: .9; }
 
-    .start { padding: 100px 0 110px; background: linear-gradient(180deg, #fff, #f3faf9 100%); }
+    .start { padding: 100px 0 110px; background: linear-gradient(180deg, #fff 0%, #cfeffb 93.3%); }
     .start-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: 44px; }
     .start-top .section-heading { margin: 0; }
     .gradient-cta { display: inline-flex; gap: 12px; align-items: center; justify-content: center; padding: 8px 8px 8px 20px; border-radius: 100px; color: #fff; background: linear-gradient(180deg, #199a91 0%, #082725 100%); font-size: 18px; font-weight: 500; line-height: 25px; letter-spacing: -.36px; white-space: nowrap; }
@@ -141,7 +154,9 @@
     @media (min-width: 768px) and (max-width: 1199px) {
       .hero { padding: 145px 0 64px; }
       .hero > .container { width: calc(100% - 48px); max-width: 720px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .video-card { margin-top: 36px; }
+      .hero-copy .video-copy { margin-top: 36px; }
+      .hero-copy .hero-action { margin-top: 36px; }
       .breadcrumb { gap: 12px; margin-bottom: 16px; font-size: 16px; line-height: 28px; }
       .subtitle { margin-top: 16px; font-size: 17px; line-height: 28px; }
       .welcome { margin-top: 24px; }
@@ -170,7 +185,9 @@
       .breadcrumb { gap: 12px; margin-bottom: 14px; font-size: 16px; line-height: 28px; }
       .hero h1 { font-size: 32px; line-height: 38px; font-weight: 500; letter-spacing: -.96px; }
       .subtitle { margin-top: 16px; font-size: 16px; line-height: 28px; }
-      .hero-grid { gap: 36px; }
+      .video-card { margin-top: 28px; }
+      .hero-copy .video-copy { margin-top: 24px; }
+      .hero-copy .hero-action { margin-top: 28px; }
       .welcome { margin-top: 28px; }
       .welcome h2 { font-size: 32px; line-height: 38px; letter-spacing: -.64px; }
       .hero-action { margin-top: 28px; }
@@ -245,21 +262,23 @@
           <div class="hero-copy">
             <nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://youmind.org/">Home</a><span aria-hidden="true">/</span><span aria-current="page">ED-180 Patients</span></nav>
             <h1 id="page-title">YouMind Bespoke<br>ED-180 Treatment Programs</h1>
-            <p class="subtitle">Advanced Physiological Support for Your Recovery</p>
-            <div class="welcome">
-              <h2>Welcome ED-180 Patients</h2>
-            </div>
-            <a class="gradient-cta hero-action" href="#get-started">How to Get Started <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></svg></span></a>
-          </div>
-          <div class="video-card">
-            <div class="video-stage" id="video-stage">
-              <video id="intro-video" controls playsinline preload="metadata" poster="assets/youmind-video-thumbnail-final.png" aria-label="YouMind Bespoke introduction video"><source src="assets/youmind-bespoke.mp4" type="video/mp4">Your browser does not support HTML video.</video>
-              <button class="video-play" id="video-play" type="button" aria-label="Play YouMind Bespoke introduction video"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4.5v23l19-11.5L8 4.5Z"/></svg></button>
+            <div class="hero-pinned">
+              <p class="subtitle">Advanced Physiological Support for Your Recovery</p>
+              <div class="welcome">
+                <h2>Welcome ED-180 Patients</h2>
+              </div>
             </div>
             <div class="video-copy">
               <p>Dr. Jeffrey DeSarbo and the clinical team at ED-180 Treatment Programs have partnered with YouMind to bring you a non-invasive layer of physiological support.</p>
               <p>Eating disorder recovery often involves periods of anticipatory anxiety and heightened nervous system stress. This autonomic friction can make traditional psychotherapy, psychiatric appointments, and supervised meal support feel particularly overwhelming.</p>
               <p>YouMind Bespoke is designed to complement your current treatment pathway at ED-180 by providing a structured, at-home neuroacoustic protocol. By supporting nervous system down-regulation between your clinical appointments, YouMind helps you arrive at each session feeling more grounded, receptive, and regulated.</p>
+            </div>
+            <a class="gradient-cta hero-action" href="#get-started">How to Get Started <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></svg></span></a>
+          </div>
+          <div class="video-card">
+            <div class="video-stage" id="video-stage">
+              <video id="intro-video" controls playsinline preload="metadata" poster="assets/youmind-bespoke-works.webp" aria-label="YouMind Bespoke introduction video"><source src="assets/youmind-bespoke.mp4" type="video/mp4">Your browser does not support HTML video.</video>
+              <button class="video-play" id="video-play" type="button" aria-label="Play YouMind Bespoke introduction video"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4.5v23l19-11.5L8 4.5Z"/></svg></button>
             </div>
           </div>
       </div>
@@ -320,6 +339,19 @@
     </div>
   </footer>
   <script>
+    (() => {
+      const hero = document.querySelector('.hero'), pinned = document.querySelector('.hero-pinned');
+      if (!hero || !pinned) return;
+      const from = [202, 253, 249];
+      const tint = () => {
+        const y = pinned.getBoundingClientRect().top - hero.getBoundingClientRect().top;
+        const t = Math.min(1, Math.max(0, (y / hero.offsetHeight + 0.22283) / 1.21629));
+        pinned.style.setProperty('--pin-rgb', from.map(c => Math.round(c + (255 - c) * t)).join(' '));
+      };
+      addEventListener('scroll', tint, { passive: true });
+      addEventListener('resize', tint);
+      tint();
+    })();
     const menuButton = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-navigation');
     menuButton.addEventListener('click', () => {
